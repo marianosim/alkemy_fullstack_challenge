@@ -4,7 +4,7 @@ const activitiesAPIController = require('../../controllers/API/activitiesAPICont
 
 //Rutas
 //Listado de movimientos
-router.get('/', activitiesAPIController.list);
+router.get('/api/activities', activitiesAPIController.list);
 
 
 module.exports = router;

@@ -46,7 +46,7 @@ module.exports = (sequelize, dataTypes) => {
 
     Activity.associate = function (models) {
         Activity.belongsTo(models.Category, {
-            as: 'category',
+            as: 'categories',
             foreignKey: 'category_id'
         })
     }

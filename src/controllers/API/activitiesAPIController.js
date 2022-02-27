@@ -6,13 +6,9 @@ const Categories = db.Category;
 
 const activitiesAPIController = {
     list: (req, res) => {
-        let promActivities = Activity.findAll({
-           attributes: ['id', 'description', 'amount', 'type', 'created_at'] 
+        Activity.findAll({
+           include: ['categories'] 
         })
-        let promCategories = Categories.findAll({
-            attributes: ['name']
-        });
-        Promise.all([promActivities, promCategories])
         .then(([activities, categories]) => {
             let response = {
                 meta: {
@@ -20,13 +16,118 @@ const activitiesAPIController = {
                     total: activities.length,
                     url: 'api/activities'
                 },
-                data: activities, categories
+                data: activities
             }
             res.json(response);
         })
         .catch((error)=> {
             console.log(error);
         })
+    },
+    create: (req, res) => {
+        Activity
+        .create(
+            {
+                description: req.body.description,
+                amount: req.body.amount,
+                type: req.body.type,
+                category_id: req.body.category_id
+            }
+        )
+        .then(confirm => {
+            let response;
+            if(confirm){
+                response = {
+                    meta: {
+                        status: 200,
+                        total: confirm.length,
+                        created: 'Ok',
+                        url: 'api/activities/create'
+                    },
+                    data: confirm
+                }
+            }else {
+                response = {
+                    meta: {
+                        status: 200,
+                        total: confirm.length,
+                        created: 'Ok',
+                        url: 'api/activities/create'
+                    },
+                    data: confirm
+                }
+            }
+            res.json(response);
+        })
+        .catch(error => res.send(error))
+    },
+    update: (req, res) => {
+        let activityId = req.params.id;
+        Activity
+        .update(
+            {
+                description: req.body.description,
+                amount: req.body.amount,
+                type: req.body.type,
+                category_id: req.body.category_id
+            },
+            {
+                where: {id: activityId}
+            }
+            .then(confirm => {
+                let response;
+                if(confirm){
+                    response = {
+                        meta: {
+                            status: 204,
+                            total: confirm.length,
+                            url: 'api/activities/update/:id'
+                        },
+                        data: confirm
+                    }
+                }else {
+                    response = {
+                        meta: {
+                            status: 204,
+                            total: confirm.length,
+                            url: 'api/activities/update/:id'
+                        },
+                        data: confirm
+                    }
+                }
+                res.json(response);
+            })
+            .catch(error => res.send(error))
+        )
+    },
+    destroy: (req, res) => {
+        let activityId = req.params.id;
+        Activity
+        .destroy({where: {id: activityId}, force: true})
+        .then(confirm => {
+            let response;
+            if(confirm){
+                response = {
+                    meta: {
+                        status: 200,
+                        total: confirm.length,
+                        url: 'api,activities/delete/:id'
+                    },
+                    data: confirm
+                }
+            }else{
+                response = {
+                    meta: {
+                        status: 204,
+                        total: confirm.length,
+                        url: 'api/activities/delete/:id'
+                    },
+                    data: confirm
+                }
+            }
+            res.json(response);
+        })
+        .catch(error => res.send(error))
     }
 }
 

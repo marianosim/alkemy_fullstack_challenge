@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.listen(process.env.PORT || 3001,()=>{console.log("server iniciado")});
+app.listen(process.env.PORT || 3001,()=>{console.log("server iniciado en puerto 3001")});
 
 //APIs Routes
 app.use('/', apiRoutesActivities);
