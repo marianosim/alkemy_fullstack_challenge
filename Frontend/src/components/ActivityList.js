@@ -15,8 +15,10 @@ function ActivityList(){
 
     return(
         
-        /* <!-- Encabezados Listado de Productos --> */
-        <div>
+        // Encabezados Listado de Productos 
+        <div className="card shadow mb-4">
+            <div className="card-body">
+                <div className="table-responsive">
                     <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                         <thead>
                             <tr>
@@ -24,6 +26,7 @@ function ActivityList(){
                                 <th>Monto</th>
                                 <th>Tipo</th>
                                 <th>Categoría</th>
+                                <th>Fecha</th>
                                 
                             </tr>
                         </thead>
@@ -33,6 +36,7 @@ function ActivityList(){
                                 <th>Monto</th>
                                 <th>Tipo</th>
                                 <th>Categoría</th>
+                                <th>Fecha</th>
                                 
                             </tr>
                         </tfoot>
@@ -44,13 +48,9 @@ function ActivityList(){
                             }
                         </tbody>
                     </table>
+                 </div>
+            </div>
         </div>
-        /*<div>
-            <p>
-                {activities?.description || 'Loading...'} {activities?.amount || 'Loading...'} {activities?.type || 'Loading...'} {activities?.categories.name || 'Loading...'}
-            </p>
-        </div>*/
-                
     )
 }
 export default ActivityList;

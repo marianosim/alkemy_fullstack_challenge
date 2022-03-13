@@ -5,7 +5,7 @@ function App() {
  
   return (
     <React.Fragment>
-      	<div >
+      	<div className='container'>
           <ContentWrapper />
           
         </div>
