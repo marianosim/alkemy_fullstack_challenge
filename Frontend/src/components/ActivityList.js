@@ -4,10 +4,10 @@ import ListRow from './ListRow';
 
 function ActivityList(){
     const [activities, setActivities] = useState([])
-    const getActivities = () => {
-        fetch('http://localhost:3001/api/activities')
+    const getActivities = async () => {
+       await fetch('http://localhost:3001/api/activities')
         .then((response) => response.json())
-        .then((activities) => setActivities([activities.data]))
+        .then((activities) => setActivities(activities.data))
     }
     useEffect(() => {
         getActivities()
@@ -42,7 +42,7 @@ function ActivityList(){
                         </tfoot>
                         <tbody>
                              {
-                            activities.map( ( row , i) => {
+                            activities?.map( ( row , i) => {
                                 return <ListRow { ...row} key={i}/>
                             })
                             }
