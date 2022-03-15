@@ -2,14 +2,14 @@ const path = require('path');
 const db = require('../../database/models');
 const sequelize = db.sequelize;
 const Activity = db.Activity;
-const Categories = db.Category;
+const Category = db.Category;
 
 const activitiesAPIController = {
     list: (req, res) => {
         Activity.findAll({
-           include: ['categories'] 
+           include: ['categories']
         })
-        .then(([activities, categories]) => {
+        .then(([...activities]) => {
             let response = {
                 meta: {
                     status: 200,
@@ -24,16 +24,25 @@ const activitiesAPIController = {
             console.log(error);
         })
     },
-    create: (req, res) => {
-        Activity
-        .create(
-            {
-                description: req.body.description,
-                amount: req.body.amount,
-                type: req.body.type,
-                category_id: req.body.category_id
-            }
-        )
+    create: async (req, res) => {
+        /*const movement_obj = {
+            ...req.body
+        }
+        try {
+            const movement = await Activity.create(movement_obj);
+            return res.status(201).json({
+                data: movement,
+                message: "Movement stored"
+            })
+        } catch (err) {
+            console.log(err);
+            return res.status(400).json({
+                message: "Unexpected error... try later."
+            })
+        }
+    },*/
+         await Activity
+        .create(req.body)
         .then(confirm => {
             let response;
             if(confirm){
