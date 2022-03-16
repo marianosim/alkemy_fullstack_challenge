@@ -5,6 +5,7 @@ import ListRow from './ListRow';
 function ActivityList(){
     const [activities, setActivities] = useState([])
     const getActivities = async () => {
+        //Fetches data from backend API
        await fetch('http://localhost:3001/api/activities')
         .then((response) => response.json())
         .then((activities) => setActivities(activities.data))
@@ -12,7 +13,7 @@ function ActivityList(){
     useEffect(() => {
         getActivities()
     },[])
-
+    
     return(
         
         // Encabezados Listado de Productos 

@@ -45,47 +45,51 @@ function NewActivityForm() {
             <h2>Nuevo registro:</h2>
         <form onSubmit={handleSubmit}>
   <div className="form-group">
-    <label>Descripción</label>
-    <input type="text" 
-    value={description}
-    className="form-control" 
-    id="exampleFormControlInput1" 
-    placeholder="Ej.: Recarga de celular"
-    name='description'
-    onChange={(e) => setDescription(e.target.value)} />
+      <label>Descripción:</label>
+          <input type="text" 
+            value={description}
+            className="form-control" 
+            id="exampleFormControlInput1" 
+            placeholder="Ej.: Recarga de celular"
+            name='description'
+            onChange={(e) => setDescription(e.target.value)} />
   </div>
   <div className="form-group">
-    <label>Monto:</label>
-    <input
-    type='text'
-    className="form-control"
-    value={amount}
-    placeholder='Ingrese el monto...'
-    onChange={(e) => setAmount(e.target.value)}/>
+      <label>Monto:</label>
+          <input
+          type='text'
+          className="form-control"
+          value={amount}
+          placeholder='Ingrese el monto...'
+          onChange={(e) => setAmount(e.target.value)}/>
+        </div>
+  <div className="form-group">
+      <label>Categorías:</label>
+          <select className="form-control" 
+          id="exampleFormControlSelect1" 
+          value={category_id}
+          onChange={(e) => setCategory_id(e.target.value)} placeholder='Seleccione una...'>
+                <option>Seleccione una...</option>
+                <option value={1}>Compras</option>
+                <option value={2}>Servicios</option>
+                <option value={3}>Entretenimiento</option>
+                <option value={4}>Restaurantes y Bares</option>
+                <option value={5}>Supermercado</option>
+                <option value={6}>Transporte</option>
+                <option value={7}>Varios</option>
+          </select>
   </div>
   <div className="form-group">
-    <label>Categorías</label>
-    <select className="form-control" id="exampleFormControlSelect1" value={category_id}
-    onChange={(e) => setCategory_id(e.target.value)} defaultValue='Seleccione una...'>
-          <option disabled>Seleccione una...</option>
-          <option value={1}>Compras</option>
-          <option value={2}>Servicios</option>
-          <option value={3}>Entretenimiento</option>
-          <option value={4}>Restaurantes y Bares</option>
-          <option value={5}>Supermercado</option>
-          <option value={6}>Transporte</option>
-          <option value={7}>Varios</option>
-    </select>
-  </div>
-  <div className="form-group">
-    <label>Tipo de movimiento</label>
-    <select className="form-control" id="exampleFormControlSelect2"
-    value={type}
-    onChange={(e) => setType(e.target.value)}>
-    <option disabled>Selecione uno...</option>
-      <option>Ingreso</option>
-      <option>Egreso</option>
-    </select>
+      <label>Tipo de movimiento:</label>
+          <select className="form-control" 
+          id="exampleFormControlSelect2"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          placeholder='Seleccione uno...'>
+            <option >Seleccione uno...</option>
+            <option>Ingreso</option>
+            <option>Egreso</option>
+          </select>
   </div>
  
   <button type="submit" className="btn btn-primary">Confirmar</button>
