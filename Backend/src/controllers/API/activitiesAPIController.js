@@ -24,6 +24,23 @@ const activitiesAPIController = {
             console.log(error);
         })
     },
+    'detail': async (req, res) => {
+        await Activity.findByPk(req.params.id,
+            {
+                include : ['categories']
+            })
+            .then(activity => {
+                let respuesta = {
+                    meta: {
+                        status: 200,
+                        total: activity.length,
+                        url: '/api/activity/:id'
+                    },
+                    data: activity
+                }
+                res.json(respuesta);
+            });
+    },
     create: async (req, res) => {
         /*const movement_obj = {
             ...req.body
@@ -70,9 +87,9 @@ const activitiesAPIController = {
         })
         .catch(error => res.send(error))
     },
-    update: (req, res) => {
-        let activityId = req.params.id;
-        Activity
+    update: async (req, res) => {
+        //let activityId = req.params.id;
+       await Activity
         .update(
             {
                 description: req.body.description,
@@ -81,16 +98,16 @@ const activitiesAPIController = {
                 category_id: req.body.category_id
             },
             {
-                where: {id: activityId}
-            }
+                where: {id: req.params.id}
+            })
             .then(confirm => {
                 let response;
                 if(confirm){
                     response = {
                         meta: {
-                            status: 204,
+                            status: 200,
                             total: confirm.length,
-                            url: 'api/activities/update/:id'
+                            url: 'api/activities/edit/:id'
                         },
                         data: confirm
                     }
@@ -99,7 +116,7 @@ const activitiesAPIController = {
                         meta: {
                             status: 204,
                             total: confirm.length,
-                            url: 'api/activities/update/:id'
+                            url: 'api/activities/edit/:id'
                         },
                         data: confirm
                     }
@@ -107,7 +124,6 @@ const activitiesAPIController = {
                 res.json(response);
             })
             .catch(error => res.send(error))
-        )
     },
     destroy: (req, res) => {
         let activityId = req.params.id;

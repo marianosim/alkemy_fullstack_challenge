@@ -6,6 +6,9 @@ const activitiesAPIController = require('../../controllers/API/activitiesAPICont
 //Listado de movimientos
 router.get('/api/activities', activitiesAPIController.list);
 
+//Detalle de un movimiento
+router.get('/api/activities/:id', activitiesAPIController.detail);
+
 //Crear movimiento nuevo
 router.post('/api/activities/create', activitiesAPIController.create);
 
