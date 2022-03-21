@@ -6,7 +6,7 @@ function Footer(){
 			<footer className="sticky-footer bg-white">
 				<div className="container my-auto">
 					<div className="copyright text-center my-auto" style={{color: 'black' }}>
-						<span>Copyright &copy; Activity Planner </span>
+						<span>Copyright &copy; My Bud(get) Planner </span>
 						<div style={{fontSize: '18px', padding: '12px'}}>
 							<i className="fab fa-instagram" style={{padding: '5px', color:'black'}}></i>
 							<i className="fab fa-facebook"style={{padding: '5px'}}></i>

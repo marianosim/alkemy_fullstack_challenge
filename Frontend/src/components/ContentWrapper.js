@@ -1,9 +1,7 @@
 import React from 'react';
 import TopBar from './TopBar';
-import ActivityList from './ActivityList';
 import Footer from './Footer';
-import NewActivityForm from './NewActivityForm';
-import CardContent from './CardContent';
+import ContentRowTop from './ContentRowTop';
 
 function ContentWrapper() {
  
@@ -12,9 +10,7 @@ function ContentWrapper() {
       <div id="content-wrapper" className="d-flex flex-column">
          <div id="content">
             <TopBar />
-            <CardContent />
-            <ActivityList />
-            <NewActivityForm />
+            <ContentRowTop />
             <Footer />
          </div>
       </div>

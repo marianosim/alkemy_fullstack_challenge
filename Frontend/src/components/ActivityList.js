@@ -13,6 +13,7 @@ function ActivityList(){
     useEffect(() => {
         getActivities()
     },[])
+
     
     return(
         
@@ -24,8 +25,8 @@ function ActivityList(){
                         <thead>
                             <tr>
                                 <th>Descripción</th>
-                                <th>Monto</th>
                                 <th>Tipo</th>
+                                <th>Monto</th>
                                 <th>Categoría</th>
                                 <th>Fecha</th>
                                 
@@ -34,8 +35,8 @@ function ActivityList(){
                         <tfoot>
                         <tr>
                                 <th>Descripción</th>
-                                <th>Monto</th>
                                 <th>Tipo</th>
+                                <th>Monto</th>
                                 <th>Categoría</th>
                                 <th>Fecha</th>
                                 
@@ -43,7 +44,7 @@ function ActivityList(){
                         </tfoot>
                         <tbody>
                              {
-                            activities?.map( ( row , i) => {
+                            activities.map( ( row , i) => {
                                 return <ListRow { ...row} key={i}/>
                             })
                             }

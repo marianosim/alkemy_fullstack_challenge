@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState} from 'react';
 
 function NewActivityForm() {
   const [description, setDescription] = useState("");
@@ -7,6 +7,7 @@ function NewActivityForm() {
   const [type, setType] = useState("");
   const [category_id, setCategory_id] = useState('');
   const [message, setMessage] = useState("");
+
 
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,9 +31,9 @@ function NewActivityForm() {
         setAmount("");
         setType("");
         setCategory_id("");
-        setMessage("Movement created successfully");
+        setMessage("Movimiento creado con éxito");
       } else {
-        setMessage("Some error occured");
+        setMessage("Ocurrió un problema");
       } 
     }catch (err) {
       console.log(err);
@@ -42,7 +43,7 @@ function NewActivityForm() {
     return (
 
         <div>
-            <h2>Nuevo registro:</h2>
+            <h4>Nuevo registro:</h4>
         <form onSubmit={handleSubmit}>
   <div className="form-group">
       <label>Descripción:</label>
@@ -92,7 +93,7 @@ function NewActivityForm() {
           </select>
   </div>
  
-  <button type="submit" className="btn btn-primary">Confirmar</button>
+  <button type="submit"  className="btn btn-primary">Confirmar</button>
   <div className="message">{message ? <p>{message}</p> : null}</div>
 </form>
         </div>
