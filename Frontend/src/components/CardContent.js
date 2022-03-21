@@ -32,7 +32,7 @@ const balance = totalIncome - totalExpenses;
   /* <!-- Total productos --> */
   let totalBalance = {
     title: 'Balance',
-    color: 'primary',
+    color: 'alert alert-primary',
     total: balance,
     icon: "fa-solid fa-money-bill-transfer",
   }
@@ -41,7 +41,7 @@ const balance = totalIncome - totalExpenses;
 
   let income = {
     title: 'Ingresos',
-    color: 'success',
+    color: 'alert alert-success',
     total: totalIncome,
     icon: "fa-solid fa-arrow-trend-up",
   }
@@ -49,7 +49,7 @@ const balance = totalIncome - totalExpenses;
 
   let expense = {
     title: 'Egresos',
-    color: 'warning',
+    color: 'alert alert-danger',
     total: '-' + totalExpenses, 
     icon: "fa-solid fa-arrow-trend-down",
   }
