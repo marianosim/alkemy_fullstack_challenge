@@ -11,6 +11,8 @@ function ListRow(props){
                          <td>{props?.type === 'Ingreso' ? '$'+props?.amount || 'Loading...' : '-$'+ props?.amount || 'Loading...'}</td>
                          <td>{props?.categories.name || 'Loading...'}</td>
                          <td>{date.toISOString().slice(0, 10) || 'Loading...'}</td>
+                         <td><button className="btn btn-primary" onClick={props.handleEdit} data-id={props.id}>Editar</button></td>
+                         <td><button className="btn btn-primary"><i className="fa-solid fa-trash-can"></i></button></td>
                 </tr>  
 
            

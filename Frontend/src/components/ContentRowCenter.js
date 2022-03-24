@@ -9,7 +9,7 @@ function ContentRowCenter(){
             
             {/*<!-- Last Product in DB -->*/}
             <ActivityList />
-            <NewActivityForm />
+            
         </div>
     )
 }
