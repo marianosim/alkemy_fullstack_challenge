@@ -32,7 +32,6 @@ const activitiesAPIController = {
             .then(activity => {
                 let respuesta = {
                     meta: {
-                        status: 200,
                         total: activity.length,
                         url: '/api/activity/:id'
                     },
@@ -107,7 +106,7 @@ const activitiesAPIController = {
                         meta: {
                             status: 200,
                             total: confirm.length,
-                            url: 'api/activities/edit/:id'
+                            url: 'api/activities/:id'
                         },
                         data: confirm
                     }
@@ -116,7 +115,7 @@ const activitiesAPIController = {
                         meta: {
                             status: 204,
                             total: confirm.length,
-                            url: 'api/activities/edit/:id'
+                            url: 'api/activitiesnode/:id'
                         },
                         data: confirm
                     }

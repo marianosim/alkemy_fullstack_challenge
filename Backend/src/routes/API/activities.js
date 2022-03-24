@@ -13,7 +13,7 @@ router.get('/api/activities/:id', activitiesAPIController.detail);
 router.post('/api/activities/create', activitiesAPIController.create);
 
 //Modificar movimiento
-router.put('/api/activities/edit/:id', activitiesAPIController.update);
+router.put('/api/activities/:id', activitiesAPIController.update);
 
 //Borrar registro
 router.delete('/api/activities/delete/:id', activitiesAPIController.destroy);
