@@ -30,39 +30,41 @@ function ActivityList(){
         console.log(data)
     }
     
-    let handleEdit = (e) => {
+    const handleEdit = (e) => {
       editActivity(e.target)
     }
     
      const handleForm = async (e) => {
         e.preventDefault();
-        setDescription(e.target.value);
-          setAmount(e.target.value)
-          setType(e.target.value)
-          setCategory_id(e.target.value)
-        let data = {
+        setDescription(e.target[0].value);
+        setAmount(e.target[1].value)
+        setType(e.target[2].value)
+        setCategory_id(e.target[3].value)
+        let info = {
             description: description,
             amount: amount,
             type: type,
             category_id: category_id
-          }
+          };
         
           if(edit) {
               let res = await fetch(`http://localhost:3001/api/activities/${dataToEdit.id}`, {
                   method: 'PUT',
+                  body: JSON.stringify(info),
                   headers: {
                       'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(data)
+                  }
+                  
               });
               await res.json();
+              getActivities();
           }else {
           let res = await fetch('http://localhost:3001/api/activities/create', {
             method: "POST",
             headers: {
               'Content-Type': 'application/json'
           },
-            body: JSON.stringify(data),
+            body: JSON.stringify(info)
           });
           await res.json();
           if (res.status === 200) {
@@ -74,13 +76,21 @@ function ActivityList(){
           } else {
             setMessage("Ocurrió un problema");
           }
+          getActivities();
         }
       };
+      const handleDelete = async(e) => {
+        e.preventDefault();
+        await fetch(`http://localhost:3001/api/activities/delete/${e.target[0].value}`, {
+            method: 'DELETE'
+        });
+        getActivities();
+      }
       
     
     return(
         
-        // Encabezados Listado de Productos 
+        // Encabezados Listado de Movimientos 
         <div className="d-sm-flex flex-wrap aligns-items-center justify-content-between mb-4 ">
             <div className="card-body">
                 <div className="table-responsive">
@@ -92,6 +102,8 @@ function ActivityList(){
                                 <th>Monto</th>
                                 <th>Categoría</th>
                                 <th>Fecha</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                                 
                             </tr>
                         </thead>
@@ -102,13 +114,15 @@ function ActivityList(){
                                 <th>Monto</th>
                                 <th>Categoría</th>
                                 <th>Fecha</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
                                 
                             </tr>
                         </tfoot>
                         <tbody>
                              {
                             activities.map( ( row , i) => {
-                                return <ListRow { ...row} key={i} handleEdit={handleEdit}/>
+                                return <ListRow { ...row} key={i} handleEdit={handleEdit} handleDelete={handleDelete}/>
                             })
                             }
                         </tbody>
