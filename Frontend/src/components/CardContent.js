@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 
 
 function CardContent() {
-  //! ingresar por props products, users y categorías
   const [activities, setActivities] = useState([])
 
   const getActivities = async () => {
@@ -16,20 +15,20 @@ function CardContent() {
 useEffect(() => {
     getActivities()
 },[])
-// Cálculo de gastos
+// Expenses calculation
 const expenses = activities.filter(activity => activity.type === 'Egreso');
 const totalExpenses = expenses.map(expense => expense.amount).reduce((acc, val)=> acc + val, 0);
 console.log(totalExpenses);
 
-//Cálculo de ingresos
+//Income calculation
 const incomings = activities.filter( activity => activity.type === 'Ingreso');
 const totalIncome = incomings.map(income => income.amount).reduce((acc, val)=> acc + val, 0);
 console.log(totalIncome);
 
-// Balance total
+// Total balance
 const balance = totalIncome - totalExpenses;
 
-  /* <!-- Total productos --> */
+  //Balance card
   let totalBalance = {
     title: 'Balance',
     color: 'alert alert-primary',
@@ -37,7 +36,7 @@ const balance = totalIncome - totalExpenses;
     icon: "fa-solid fa-money-bill-transfer",
   }
 
-  /* <!-- Total usuarios --> */
+  //Income card
 
   let income = {
     title: 'Ingresos',
@@ -45,7 +44,7 @@ const balance = totalIncome - totalExpenses;
     total: totalIncome,
     icon: "fa-solid fa-arrow-trend-up",
   }
-  /* <!-- Total categorías --> */
+  //Expense card
 
   let expense = {
     title: 'Egresos',
@@ -54,12 +53,12 @@ const balance = totalIncome - totalExpenses;
     icon: "fa-solid fa-arrow-trend-down",
   }
 
-let cartProps = [totalBalance, income, expense]
+let cardProps = [totalBalance, income, expense]
 
 return (
   <div className="row">
-    {cartProps.map((carts, i) => {
-      return <Card {...carts} key={i} />
+    {cardProps.map((cards, i) => {
+      return <Card {...cards} key={i}/>
     })}
   </div>
 )

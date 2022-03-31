@@ -15,7 +15,7 @@ function ListRow(props){
                          <td>
                              <form onSubmit={props.handleDelete}>
                                  <input type='text' hidden defaultValue={props.id}/>
-                                 <button className="btn btn-primary"><i className="fa-solid fa-trash-can"></i></button>
+                                 <button className="btn btn-danger"><i className="fa-solid fa-trash-can"></i></button>
                              </form>
                              </td>
                 </tr>  

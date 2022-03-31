@@ -2,14 +2,11 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import ListRow from './ListRow';
 import NewActivityForm from './NewActivityForm';
+import EditForm from './EditForm';
+
 
 function ActivityList(){
     const [activities, setActivities] = useState([])
-    const [description, setDescription] = useState('');
-    const [amount, setAmount] = useState('');
-    const [type, setType] = useState('');
-    const [category_id, setCategory_id] = useState('');
-    const [message, setMessage] = useState("");
     const [edit, setEdit] = useState(false);
     const [dataToEdit, setDataToEdit] = useState([]);
     const getActivities = async () => {
@@ -23,76 +20,50 @@ function ActivityList(){
     },[])
 
     const editActivity = async (obj) => {
-        const response = await fetch('http://localhost:3001/api/activities/' + obj.dataset.id);
-        const data = await response.json()
-        setEdit(true);
-        setDataToEdit(data.data)
-        console.log(data)
+        await fetch('http://localhost:3001/api/activities/' + obj.dataset.id)
+        .then((response) => response.json())
+        .then((data) => setDataToEdit(data.data))
+        setEdit(true)
     }
     
     const handleEdit = (e) => {
       editActivity(e.target)
     }
-    
-     const handleForm = async (e) => {
+        
+      const handleEditForm = async (e) => {
         e.preventDefault();
-        setDescription(e.target[0].value);
-        setAmount(e.target[1].value)
-        setType(e.target[2].value)
-        setCategory_id(e.target[3].value)
+        console.log(e.target[0].value, e.target[1].value, e.target[2].value, dataToEdit.id)
         let info = {
-            description: description,
-            amount: amount,
-            type: type,
-            category_id: category_id
+            description: e.target[0].value,
+            amount: e.target[1].value,
+            category_id: e.target[2].value
           };
         
-          if(edit) {
-              let res = await fetch(`http://localhost:3001/api/activities/${dataToEdit.id}`, {
-                  method: 'PUT',
-                  body: JSON.stringify(info),
+              let res = await fetch(`http://localhost:3001/api/activities/edit/${dataToEdit?.id}`, {
+                  method: "PUT",
                   headers: {
+                      'Accept': 'application/json',
                       'Content-Type': 'application/json'
-                  }
-                  
+                  },
+                  body: JSON.stringify(info)
               });
-              await res.json();
-              getActivities();
-          }else {
-          let res = await fetch('http://localhost:3001/api/activities/create', {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json'
-          },
-            body: JSON.stringify(info)
-          });
-          await res.json();
-          if (res.status === 200) {
-            setDescription("");
-            setAmount("");
-            setType("");
-            setCategory_id("");
-            setMessage("Movimiento creado con éxito");
-          } else {
-            setMessage("Ocurrió un problema");
-          }
-          getActivities();
-        }
-      };
+                await res.json();
+                setEdit(false)
+                getActivities();
+            };
       const handleDelete = async(e) => {
         e.preventDefault();
         await fetch(`http://localhost:3001/api/activities/delete/${e.target[0].value}`, {
             method: 'DELETE'
         });
         getActivities();
-      }
+    };
       
-    
     return(
-        
-        // Encabezados Listado de Movimientos 
+        // List headers and footers 
         <div className="d-sm-flex flex-wrap aligns-items-center justify-content-between mb-4 ">
             <div className="card-body">
+                <h4>Movimientos:</h4>
                 <div className="table-responsive">
                     <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
                         <thead>
@@ -129,18 +100,20 @@ function ActivityList(){
                     </table>
                  </div> 
             </div>
-            <div className='form-responsive p-5'>
-            <NewActivityForm 
-            function={handleForm}
-            description={edit ? dataToEdit.description : ''}
-            amount={edit ? dataToEdit.amount : ''}
-            type={edit ? dataToEdit.type : ''}
-            category_id={edit ? dataToEdit.category_id : ''}
-            message={message}
-            edit={edit} />
-            
-            </div>
-           
+            {edit ||
+                <div className='form-responsive p-5'>
+                <NewActivityForm 
+                getActivities={getActivities} />
+                </div>
+            }
+            {edit &&
+                <EditForm 
+                function={handleEditForm}
+                description={dataToEdit?.description}
+                amount={dataToEdit?.amount}
+                category_id={dataToEdit?.category_id}
+                edit={edit} />
+            }
         </div>
     )
 }

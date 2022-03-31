@@ -93,7 +93,7 @@ const activitiesAPIController = {
             {
                 description: req.body.description,
                 amount: req.body.amount,
-                type: req.body.type,
+                //type: req.body.type,
                 category_id: req.body.category_id
             },
             {
@@ -106,7 +106,7 @@ const activitiesAPIController = {
                         meta: {
                             status: 200,
                             total: confirm.length,
-                            url: 'api/activities/:id'
+                            url: 'api/activities/edit/:id'
                         },
                         data: confirm
                     }
@@ -115,7 +115,7 @@ const activitiesAPIController = {
                         meta: {
                             status: 204,
                             total: confirm.length,
-                            url: 'api/activitiesnode/:id'
+                            url: 'api/activities/edit/:id'
                         },
                         data: confirm
                     }

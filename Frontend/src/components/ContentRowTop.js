@@ -5,19 +5,12 @@ import CardContent from './CardContent';
 function ContentRowTop(){
     return(
         <React.Fragment>
-				{/*<!-- Content Row Top -->*/}
-				<div className="container-fluid">
-					<div className="d-sm-flex aligns-items-center justify-content-around mb-4">
-                   
-					
-					</div>
-				
+				<div className="container-fluid">				
 					{/*<!-- Content Row Categories-->*/}
                     <CardContent />
 					<ContentRowCenter />
 	
 				</div>
-				{/*<!--End Content Row Top-->*/}
 
         </React.Fragment>
     )
