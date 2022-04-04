@@ -3,12 +3,17 @@ import { useEffect, useState } from 'react';
 import ListRow from './ListRow';
 import NewActivityForm from './NewActivityForm';
 import EditForm from './EditForm';
+import Pagination from './Pagination';
 
 
 function ActivityList(){
     const [activities, setActivities] = useState([])
     const [edit, setEdit] = useState(false);
     const [dataToEdit, setDataToEdit] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [movementsPerPage] = useState(10);
+
+
     const getActivities = async () => {
         //Fetches data from backend API
        await fetch('http://localhost:3001/api/activities')
@@ -58,6 +63,15 @@ function ActivityList(){
         });
         getActivities();
     };
+
+    // Pagination
+    //Get current movements
+    const indexOfLastMovement = currentPage * movementsPerPage;
+    const indexOfFirtsMovement = indexOfLastMovement - movementsPerPage;
+    const currentMovements = activities.slice(indexOfFirtsMovement, indexOfLastMovement);
+
+    // Change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
       
     return(
         // List headers and footers 
@@ -92,14 +106,16 @@ function ActivityList(){
                         </tfoot>
                         <tbody>
                              {
-                            activities.map( ( row , i) => {
+                            currentMovements.map( ( row , i) => {
                                 return <ListRow { ...row} key={i} handleEdit={handleEdit} handleDelete={handleDelete}/>
                             })
                             }
                         </tbody>
                     </table>
                  </div> 
+                 <Pagination movementsPerPage={movementsPerPage} totalMovements={activities.length} paginate={paginate} />
             </div>
+            
             {edit ||
                 <div className='form-responsive p-5'>
                 <NewActivityForm 
