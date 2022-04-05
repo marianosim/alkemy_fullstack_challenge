@@ -9,6 +9,7 @@ const Pagination = ({movementsPerPage, totalMovements, paginate}) => {
 
     return (
         <nav>
+            <div className="d-flex flex-wrap justify-content-center p-2">           
             <ul className="pagination">
                 {pageNumbers.map(number => (
                     <li key={number} className='page-item'>
@@ -18,6 +19,8 @@ const Pagination = ({movementsPerPage, totalMovements, paginate}) => {
                     </li>
                 ))}
             </ul>
+            </div>
+            
 
         </nav>
     )

@@ -3,8 +3,8 @@ import Card from './Card'
 import { useEffect, useState } from 'react'
 
 
-function CardContent() {
-  const [activities, setActivities] = useState([])
+function CardContent({activities}) {
+  /*const [activities, setActivities] = useState([])
 
   const getActivities = async () => {
     //Fetches data from backend API
@@ -14,7 +14,7 @@ function CardContent() {
 }
 useEffect(() => {
     getActivities()
-},[])
+},[])*/
 // Expenses calculation
 const expenses = activities.filter(activity => activity.type === 'Egreso');
 const totalExpenses = expenses.map(expense => expense.amount).reduce((acc, val)=> acc + val, 0);
@@ -53,7 +53,7 @@ const balance = totalIncome - totalExpenses;
     icon: "fa-solid fa-arrow-trend-down",
   }
 
-let cardProps = [totalBalance, income, expense]
+let cardProps = [income, totalBalance, expense]
 
 return (
   <div className="row">
