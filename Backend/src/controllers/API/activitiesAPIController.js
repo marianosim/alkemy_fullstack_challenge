@@ -7,7 +7,10 @@ const Category = db.Category;
 const activitiesAPIController = {
     list: (req, res) => {
         Activity.findAll({
-           include: ['categories']
+           include: ['categories'],
+           order: [
+               ['created_at', 'DESC']
+           ]
         })
         .then(([...activities]) => {
             let response = {
