@@ -42,11 +42,12 @@ function NewActivityForm(props) {
 
     return (
         //Form to add new movement
-        <div>
-            <h4>Nuevo registro</h4>
-        <form onSubmit={handleNewForm}>
-      <div className="form-group">
-      <label>Descripción:</label>
+        <div className=''>
+            
+        <form className='movement-form' onSubmit={handleNewForm}>
+        <h4>Nuevo registro</h4>
+      <div className="form-group pb-2">
+      <label className='form-label'>Descripción:</label>
           <input type="text"
             value={description}
             className="form-control" 
@@ -55,8 +56,8 @@ function NewActivityForm(props) {
             name='description'
             onChange={(e) => setDescription(e.target.value)} />
   </div>
-  <div className="form-group">
-      <label>Monto:</label>
+  <div className="form-group pb-2">
+      <label className='form-label'>Monto:</label>
           <input
           type='text'
           className="form-control"
@@ -65,8 +66,8 @@ function NewActivityForm(props) {
           placeholder='Ingrese el monto...'
           onChange={(e) => setAmount(e.target.value)}/>
         </div>
-  <div className="form-group">
-      <label>Categorías:</label>
+  <div className="form-group pb-2">
+      <label className='form-label'>Categorías:</label>
           <select className="form-select" 
           id="exampleFormControlSelect1"
           name='category_id' 
@@ -82,8 +83,8 @@ function NewActivityForm(props) {
                 <option value={7}>Varios</option>
           </select>
   </div>
-    <div className="form-group">
-    <label>Tipo de movimiento:</label>
+    <div className="form-group pb-2">
+    <label className='form-label'>Tipo de movimiento:</label>
         <select className="form-select" 
         id="exampleFormControlSelect2"
         name='type'

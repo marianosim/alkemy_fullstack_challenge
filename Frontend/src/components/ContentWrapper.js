@@ -7,8 +7,8 @@ function ContentWrapper() {
  
   return (
     <React.Fragment>
-      <div id="content-wrapper" className="d-flex flex-column">
-         <div id="content">
+      <div id="content-wrapper" className="d-flex flex-column bg-light">
+         <div>
             
             <TopBar />
             <MainContent />

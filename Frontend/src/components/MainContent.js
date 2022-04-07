@@ -63,32 +63,38 @@ function MainContent(){
     
     return(
         <React.Fragment>
-				<div className="sm-flex flex-wrap justify-content-around mb-4">				
-					{/*<!-- Main Content -->*/}
-                    <CardContent activities={activities}/>
-                    <div className="d-flex flex-wrap justify-content-around mb-4 ">
-                    <ActivityList activities={activities}
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete} />
-            
-                    {edit ||
-                <div className='form-responsive p-5'>
-                <NewActivityForm 
-                getActivities={getActivities} />
-                </div>
-            }
-            {edit &&
-                <EditForm 
-                function={handleEditForm}
-                description={dataToEdit?.description}
-                amount={dataToEdit?.amount}
-                category_id={dataToEdit?.category_id}
-                edit={edit} />
-            }
+				<div className="sm-flex flex-wrap justify-content-around mb-4">	
+                    <div className='row'>
+                            {/*<!-- Main Content -->*/}
+                        <CardContent activities={activities}/>
+                        <div className="d-flex flex-wrap justify-content-center mb-4">
+                            <div style={{paddingRight: '10%'}}> 
+                            <ActivityList activities={activities}
+                            handleEdit={handleEdit}
+                            handleDelete={handleDelete} />  
+                            </div>
+                            <div>
+                            {edit ||
+                                <div className='form-responsive p-5'>
+                                    <NewActivityForm 
+                                    getActivities={getActivities} />
+                                </div>
+                            }
+                            {edit &&
+                                <div className='form-responsive p-5'>
+                                <EditForm 
+                                function={handleEditForm}
+                                description={dataToEdit?.description}
+                                amount={dataToEdit?.amount}
+                                category_id={dataToEdit?.category_id}
+                                edit={edit} />
+                                </div>
+                            }
+                            </div>
+                            
                     </div>
-                    
-
-				</div>
+                </div>			
+			</div>
 
         </React.Fragment>
     )

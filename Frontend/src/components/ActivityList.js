@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import ListRow from './ListRow';
 import Pagination from './Pagination';
+import Filters from './Filters';
 
 
 const ActivityList = ({activities, handleEdit, handleDelete}) => {
@@ -16,14 +16,34 @@ const ActivityList = ({activities, handleEdit, handleDelete}) => {
 
     // Change page
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    //Filters
+    const [selectedCategory, setSelectedCategory] = useState('Todas');
+
+    const getFilteredList = () => {
+        if(!selectedCategory) {
+            return activities
+        }
+        return activities.filter((activity) => activity.categories.name === selectedCategory)
+    };
+
+    const filteredList = useMemo(getFilteredList, [selectedCategory, activities])
+
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+    }
+
       
     return(
         // List headers and footers 
-        <div className="d-sm-flex flex-wrap aligns-items-center justify-content-between mb-4 ">
+        <div className="d-flex flex-wrap aligns-items-center justify-content-between mb-4 ">
             <div className="card-body">
-                <h4>Movimientos:</h4>
+                <div className="d-flex flex-wrap justify-content-between mb-2">
+                <h4>Últimos movimientos:</h4>
+                <Filters activities={activities} handleCategoryChange={handleCategoryChange} filteredList={filteredList}/>
+                </div>
                 <div className="table-responsive">
-                    <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+                    <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0" >
                         <thead>
                             <tr>
                                 <th>Descripción</th>
@@ -49,7 +69,12 @@ const ActivityList = ({activities, handleEdit, handleDelete}) => {
                             </tr>
                         </tfoot>
                         <tbody>
-                             {
+                            {selectedCategory === 'Todas' ||
+                            filteredList.map((row, i) => {
+                                return <ListRow {...row} key={i} handleEdit={handleEdit} handleDelete={handleDelete}/>
+                            })
+                            }
+                             {selectedCategory === 'Todas' &&
                             currentMovements.map( ( row , i) => {
                                 return <ListRow { ...row} key={i} handleEdit={handleEdit} handleDelete={handleDelete}/>
                             })

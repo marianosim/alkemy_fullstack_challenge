@@ -12,8 +12,9 @@ const EditForm = (props) => {
     return (
         //Edit movement form
         <div className='form-responsive p-5'>
-            <h4>Editar registro</h4>
-        <form onSubmit={props.function}>
+            
+        <form className='edit-form' onSubmit={props.function}>
+        <h4>Editar registro</h4>
       <div className="form-group">
       <label>Descripción:</label>
           <input type="text" 

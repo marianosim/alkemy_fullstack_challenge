@@ -5,7 +5,7 @@ function App() {
  
   return (
     <React.Fragment>
-      	<div className='container'>
+      	<div className='container-fluid'>
           <ContentWrapper />
           
         </div>

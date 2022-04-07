@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #b8b9bd;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,6 +26,45 @@
 
 .App-link {
   color: #61dafb;
+}
+.container {
+  font-family: 'Nunito', sans-serif;
+}
+.btn{
+  background-color: #6e9aa5c4;
+  border: #1986a1c4;
+  
+}
+thead tr, tfoot tr{
+  text-align: center;
+  color: white;
+  background-color: #5893a2c4;
+}
+.movement-form{
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: center;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+}
+.edit-form{
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #fff;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: center;
+  -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+}
+footer i{
+  color: white;
+  padding: 5px;
 }
 
 @keyframes App-logo-spin {
