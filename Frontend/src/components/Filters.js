@@ -13,7 +13,7 @@ const Filters = ({handleCategoryChange}) => {
             id="category-list"
             onChange={handleCategoryChange}
           >
-            <option value="">Todas</option>
+            <option value="Todas">Todas</option>
             <option value="Compras">Compras</option>
             <option value="Servicios">Servicios</option>
             <option value="Entretenimiento">Entretenimiento</option>

@@ -130,7 +130,7 @@ const activitiesAPIController = {
     destroy: (req, res) => {
         let activityId = req.params.id;
         Activity
-        .destroy({where: {id: activityId}, force: true})
+        .destroy({where: {id: activityId}})
         .then(confirm => {
             let response;
             if(confirm){

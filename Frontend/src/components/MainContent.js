@@ -21,6 +21,7 @@ function MainContent(){
     },[])
 
     const editActivity = async (obj) => {
+        setEdit(false)
         await fetch('http://localhost:3001/api/activities/' + obj.dataset.id)
         .then((response) => response.json())
         .then((data) => setDataToEdit(data.data))
