@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `fs_alkemy` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `fs_alkemy`;
 -- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
 --
 -- Host: localhost    Database: fs_alkemy
@@ -30,11 +32,11 @@ CREATE TABLE `activities` (
   `category_id` int NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id_idx` (`category_id`),
   CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +45,7 @@ CREATE TABLE `activities` (
 
 LOCK TABLES `activities` WRITE;
 /*!40000 ALTER TABLE `activities` DISABLE KEYS */;
-INSERT INTO `activities` VALUES (41,'Transferencia recibida',30000,'Ingreso',7,'2022-03-30 21:12:14','2022-04-05 15:16:52','2022-04-05 15:16:52'),(42,'Cena en restaurante',2500,'Egreso',4,'2022-03-30 21:12:48','2022-03-30 21:12:48',NULL),(43,'Farmacia',1085,'Egreso',1,'2022-03-30 21:13:23','2022-03-30 21:13:23',NULL),(44,'Nafta',3250,'Egreso',6,'2022-03-30 21:13:47','2022-03-30 21:14:56','2022-03-30 21:14:56'),(46,'Recarga SUBE',500,'Egreso',6,'2022-04-04 20:57:30','2022-04-04 20:57:30',NULL),(47,'Supermercado',3500,'Egreso',5,'2022-04-04 20:58:00','2022-04-04 20:58:00',NULL),(48,'Recarga de saldo',2000,'Ingreso',7,'2022-04-04 20:58:20','2022-04-04 20:58:20',NULL),(49,'Cine',1300,'Egreso',3,'2022-04-04 20:58:54','2022-04-04 20:58:54',NULL),(50,'Factura Celular',2500,'Egreso',2,'2022-04-04 20:59:14','2022-04-04 20:59:14',NULL),(51,'Factura internet',2000,'Egreso',2,'2022-04-04 21:00:03','2022-04-04 21:00:03',NULL),(52,'Cena en restaurante',2100,'Egreso',4,'2022-04-04 21:02:57','2022-04-04 21:02:57',NULL);
+INSERT INTO `activities` VALUES (1,'Transferencia',30000,'Ingreso',7,'2022-04-08 16:46:30','2022-04-08 13:46:30',NULL),(58,'Cena en restaurante',2500,'Egreso',4,'2022-04-08 16:47:10','2022-04-08 16:47:10',NULL),(59,'Farmacia',1085,'Egreso',1,'2022-04-08 16:48:06','2022-04-08 16:48:06',NULL),(60,'Nafta',3250,'Egreso',6,'2022-04-08 16:48:26','2022-04-08 16:48:26',NULL),(61,'Recarga SUBE',600,'Egreso',6,'2022-04-08 16:48:45','2022-04-08 19:50:20',NULL),(62,'Supermercado',3550,'Egreso',5,'2022-04-08 16:49:09','2022-04-08 19:50:20',NULL),(63,'Cine',1350,'Egreso',3,'2022-04-08 16:49:35','2022-04-08 16:49:35',NULL),(64,'Factura celular',2500,'Egreso',2,'2022-04-08 16:49:55','2022-04-08 16:49:55',NULL),(65,'Factura internet',2000,'Egreso',2,'2022-04-08 16:50:14','2022-04-08 16:50:14',NULL),(66,'Gimnasio',2700,'Egreso',2,'2022-04-08 16:50:47','2022-04-08 19:50:20',NULL),(69,'Rappi',1350,'Egreso',4,'2022-04-08 22:48:00','2022-04-08 19:51:05',NULL);
 /*!40000 ALTER TABLE `activities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-05 12:29:12
+-- Dump completed on 2022-04-08 19:53:52

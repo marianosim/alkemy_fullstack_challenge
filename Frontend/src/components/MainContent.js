@@ -34,7 +34,6 @@ function MainContent(){
         
       const handleEditForm = async (e) => {
         e.preventDefault();
-        console.log(e.target[0].value, e.target[1].value, e.target[2].value, dataToEdit.id)
         let info = {
             description: e.target[0].value,
             amount: e.target[1].value,
@@ -53,6 +52,7 @@ function MainContent(){
                 setEdit(false)
                 getActivities();
             };
+            
       const handleDelete = async(e) => {
         e.preventDefault();
         await fetch(`http://localhost:3001/api/activities/delete/${e.target[0].value}`, {

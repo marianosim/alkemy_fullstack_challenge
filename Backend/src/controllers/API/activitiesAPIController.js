@@ -44,22 +44,6 @@ const activitiesAPIController = {
             });
     },
     create: async (req, res) => {
-        /*const movement_obj = {
-            ...req.body
-        }
-        try {
-            const movement = await Activity.create(movement_obj);
-            return res.status(201).json({
-                data: movement,
-                message: "Movement stored"
-            })
-        } catch (err) {
-            console.log(err);
-            return res.status(400).json({
-                message: "Unexpected error... try later."
-            })
-        }
-    },*/
          await Activity
         .create(req.body)
         .then(confirm => {
@@ -89,8 +73,7 @@ const activitiesAPIController = {
         })
         .catch(error => res.send(error))
     },
-    update: async (req, res) => {
-        //let activityId = req.params.id;
+    updateMovement: async (req, res) => {
        await Activity
         .update(
             {
