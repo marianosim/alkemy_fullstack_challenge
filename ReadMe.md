@@ -15,10 +15,12 @@ El presente consiste en una aplicación que permite llevar cuenta de los movimie
 - Datos persistidos en base de datos. 
 
 **Backend:**
-Desarrollado en Node.js con express como framework. 
+Desarrollado en Node.js con express como framework.
+Iniciar con el comando: node src/app.js
 
 **Frontend:**
 Desarrollado con React.js
+Iniciar con el comando: npm start
 
 **Base de datos:**
 Creación de base de datos relacional utilizando MySQL (script disponible dentro del proyecto: 'Backend/src/database/alkemy_challenge_database.sql').
