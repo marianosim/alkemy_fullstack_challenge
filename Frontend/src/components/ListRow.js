@@ -4,7 +4,7 @@ function ListRow(props){
     let date = new Date(props.created_at);
    
     return (
-        //Filas en listado de actividades
+        //Rows in transactions list
                <tr style={{textAlign: 'center'}}>
                          <td>{props?.description || 'Loading...'}</td>
                          <td>{props?.type || 'Loading...'}</td>

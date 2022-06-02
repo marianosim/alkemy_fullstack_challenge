@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import CardContent from './CardContent';
 import ActivityList from './ActivityList';
-import NewActivityForm from './NewActivityForm';
-import EditForm from './EditForm';
+import NewTransactionForm from './NewTransaction';
+import EditTransactionForm from './EditTransaction';
 
 function MainContent(){
     const [activities, setActivities] = useState([])
@@ -20,6 +20,7 @@ function MainContent(){
         getActivities()
     },[])
 
+    // Gets especifica transaction data to edit 
     const editActivity = async (obj) => {
         setEdit(false)
         await fetch('http://localhost:3001/api/activities/' + obj.dataset.id)
@@ -28,10 +29,12 @@ function MainContent(){
         setEdit(true)
     }
     
+    // Edit form is completed with selected transaction to edit
     const handleEdit = (e) => {
       editActivity(e.target)
     }
-        
+      
+    // Edits transaction with the new data 
       const handleEditForm = async (e) => {
         e.preventDefault();
         let info = {
@@ -52,7 +55,8 @@ function MainContent(){
                 setEdit(false)
                 getActivities();
             };
-            
+       
+      // Makes a soft delete of the transaction      
       const handleDelete = async(e) => {
         e.preventDefault();
         await fetch(`http://localhost:3001/api/activities/delete/${e.target[0].value}`, {
@@ -64,38 +68,39 @@ function MainContent(){
     
     return(
         <React.Fragment>
-				<div className="sm-flex flex-wrap justify-content-around mb-4">	
+            <div>
+                <div className="sm-flex flex-wrap justify-content-around mb-4">	
                     <div className='row'>
                             {/*<!-- Main Content -->*/}
                         <CardContent activities={activities}/>
-                        <div className="d-flex flex-wrap justify-content-center mb-4">
+                        <div className="d-flex flex-wrap justify-content-center mb-4 container">
+                            {/*<!-- List of transactions -->*/}
                             <div style={{paddingRight: '10%'}}> 
                             <ActivityList activities={activities}
                             handleEdit={handleEdit}
                             handleDelete={handleDelete} />  
                             </div>
-                            <div>
-                            {edit ||
-                                <div className='form-responsive p-5'>
-                                    <NewActivityForm 
-                                    getActivities={getActivities} />
-                                </div>
-                            }
-                            {edit &&
-                                <div className='form-responsive p-5'>
-                                <EditForm 
-                                function={handleEditForm}
-                                description={dataToEdit?.description}
-                                amount={dataToEdit?.amount}
-                                category_id={dataToEdit?.category_id}
-                                edit={edit} />
-                                </div>
-                            }
-                            </div>
-                            
-                    </div>
-                </div>			
-			</div>
+                         </div>
+                    </div>			
+			    </div>
+                {/*<!-- Conditional rendering. Add or edit transaction -->*/}
+                <div className='transactions-bar'>
+                    {edit ||
+                            <NewTransactionForm 
+                            getActivities={getActivities} />
+                    }
+                    {edit &&
+                        
+                        <EditTransactionForm 
+                        function={handleEditForm}
+                        description={dataToEdit?.description}
+                        amount={dataToEdit?.amount}
+                        category_id={dataToEdit?.category_id}
+                        edit={edit} />
+                    }                            
+                </div>
+            </div>
+				
 
         </React.Fragment>
     )

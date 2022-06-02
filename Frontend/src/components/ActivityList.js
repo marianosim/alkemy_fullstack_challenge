@@ -37,13 +37,13 @@ const ActivityList = ({activities, handleEdit, handleDelete}) => {
     return(
         // List headers and footers 
         <div className="d-flex flex-wrap aligns-items-center justify-content-between mb-4 ">
-            <div className="card-body">
+            <div className="table-list">
                 <div className="d-flex flex-wrap justify-content-between mb-2">
                 <h4>Últimos movimientos:</h4>
                 <Filters activities={activities} handleCategoryChange={handleCategoryChange} filteredList={filteredList}/>
                 </div>
-                <div className="table-responsive">
-                    <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0" >
+                <div >
+                    <table className="table table-bordered table-stripped table-hover" id="dataTable" width="100%" cellSpacing="0" >
                         <thead>
                             <tr>
                                 <th>Descripción</th>
@@ -68,6 +68,7 @@ const ActivityList = ({activities, handleEdit, handleDelete}) => {
                                 
                             </tr>
                         </tfoot>
+                        {/*<!-- Conditional rendering depending of the applied filter -->*/}
                         <tbody>
                             {selectedCategory === 'Todas' ||
                             filteredList.map((row, i) => {

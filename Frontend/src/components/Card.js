@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+// Top cards displaying Total Balance, Income and Expenses
 function Card(props){
     return(
         <div className="col-md-3 mb-4 mx-auto" >

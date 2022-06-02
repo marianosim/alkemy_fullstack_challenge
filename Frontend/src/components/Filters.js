@@ -1,5 +1,7 @@
 import React from "react";
 
+// Filters transactions by category
+
 const Filters = ({handleCategoryChange}) => {
 
     return (

@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #b8b9bd;
+  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,6 +30,17 @@
 .container {
   font-family: 'Nunito', sans-serif;
 }
+div .container{
+  background-image: url(../images/hasyert.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+nav{
+  filter: grayscale(25%);
+}
+table{
+  background-color: white;
+}
 .btn{
   background-color: #6e9aa5c4;
   border: #1986a1c4;
@@ -38,33 +49,168 @@
 thead tr, tfoot tr{
   text-align: center;
   color: white;
-  background-color: #5893a2c4;
+  background-color: #3e9ab1;
+  filter: grayscale(25%);
 }
-.movement-form{
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
-  background: #fff;
-  padding: 30px;
-  width: 90%;
-  max-width: 450px;
-  position: center;
-  -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+
+.transaction-bar{
+  left: 0;
 }
-.edit-form{
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
-  background: #fff;
-  padding: 30px;
-  width: 90%;
-  max-width: 450px;
-  position: center;
-  -webkit-box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 0 15px 0 rgba(0,0,0,0.3);
+.new-transaction-section {
+  background: #3e9ab1;
+  color: var(--white);
+  margin: auto;
+  padding: 14px 20px;
+  padding-bottom: 8px;
+  box-shadow: var(--shadow);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  filter: grayscale(25%);
 }
+
+.new-transaction-section label {
+  display: block;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.857);
+}
+
+.form-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.new-transaction-section button {
+  padding: 9px 12px;
+  border-radius: 6px;
+  border: solid 1px #ffffff;
+  background-color: #141c3a;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.new-transaction-section button:hover,
+.new-transaction-section button:focus {
+  background-color: #ffffff;
+  color: #141c3a;
+}
+
+select {
+  padding: 7px 16px 8px 12px;
+  border-radius: 6px;
+  border: solid 1px #141c3a;
+  background-color: #ffffff;
+  text-transform: capitalize;
+}
+
+.new-transaction-list {
+  list-style: none;
+  padding: 0;
+}
+
+.new-transaction {
+  padding: 12px 10.5px 11px 16px;
+  border-radius: 6px;
+  border: solid 1px #141c3a;
+  background-color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.description {
+  font-style: italic;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.new-transaction button {
+  margin-left: auto;
+  background: white;
+  border: solid 1px #141c3a;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.new-transaction button:hover,
+.new-transaction button:focus {
+  color: white;
+  background-color: #141c3a;
+}
+
+.new-transactions-section {
+  padding-bottom: 350px;
+}
+
+.page-numbers{
+  padding-bottom: 10%;
+}
+
 footer i{
   color: white;
   padding: 5px;
+}
+
+/*Changing trasanction's table to behave as a list in mobile version for better readability */
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	/*Table headers and footers disappear (not show instead of display: none)*/
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+  tfoot tr{
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+  }
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 40%;
+	}
+	
+	td:before { 
+		position: absolute;
+		top: 6px;
+		left: 2px;
+		width: 45%; 
+		padding-right: 26px; 
+		white-space: nowrap;
+	}
+	
+	/*Table headers shown in every item*/
+	td:nth-of-type(1):before { content: "Descripción"; }
+	td:nth-of-type(2):before { content: "Tipo"; }
+	td:nth-of-type(3):before { content: "Monto"; }
+	td:nth-of-type(4):before { content: "Categoría"; }
+	td:nth-of-type(5):before { content: "Fecha"; }
+	td:nth-of-type(6):before { content: "Editar"; }
+	td:nth-of-type(7):before { content: "Eliminar"; }
 }
 
 @keyframes App-logo-spin {
